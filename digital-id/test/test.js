@@ -15,7 +15,7 @@ contract("DigitalIdentityCard", (accounts) => {
   it("Create a sample digital identification card", async () => {
     const name = "John Doe";
     const birthday = "2003-03-23";
-    const driversLicenseNumber = 1235989;
+    const driversLicenseNumber = 12389;
 
     // Create the digital identification card
     await digitalIdentityCardInstance.createIdentity(name, birthday, driversLicenseNumber, { from: accounts[0] });
