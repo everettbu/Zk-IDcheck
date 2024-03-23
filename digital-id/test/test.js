@@ -3,14 +3,19 @@ const DigitalIdentityCard = artifacts.require("DigitalIdentityCard");
 contract("DigitalIdentityCard", (accounts) => {
   let digitalIdentityCardInstance;
 
+  // Load the deployed contract instance using the dynamically fetched address
   before(async () => {
-    digitalIdentityCardInstance = await DigitalIdentityCard.deployed();
+    const contractData = require("../build/contracts/DigitalIdentityCard.json"); // Adjust the path as needed
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork = contractData.networks[networkId];
+    digitalIdentityCardInstance = await DigitalIdentityCard.at(deployedNetwork.address);
   });
 
-  it("should create a sample digital identification card", async () => {
+  // Test case
+  it("Create a sample digital identification card", async () => {
     const name = "John Doe";
-    const birthday = 946684800; // January 1, 2000 (Unix timestamp)
-    const driversLicenseNumber = 123456789;
+    const birthday = "2003-03-23";
+    const driversLicenseNumber = 1235989;
 
     // Create the digital identification card
     await digitalIdentityCardInstance.createIdentity(name, birthday, driversLicenseNumber, { from: accounts[0] });
