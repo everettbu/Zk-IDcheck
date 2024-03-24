@@ -24,7 +24,7 @@ class ZKProof:
     def verify(self, response):
         return self.v == self._hash(response)
 
-    def verify_date(self, response_date):
+    def verify_age(self, response_date):
         current_date = datetime.now()
         response_date = datetime.strptime(response_date, '%Y-%m-%d')
         # Calculate the difference in years
