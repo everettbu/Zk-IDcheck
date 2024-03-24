@@ -3,7 +3,7 @@ from web3 import Web3
 from zkp import ZKProof
 
 # Load contract ABI and address from JSON file
-with open('/Users/Everett/Desktop/Zk-IDcheck/digital-id/build/contracts/DigitalIdentityCard.json') as f:
+with open('/Users/Everett/Desktop/Zk-IDcheck/build/contracts/DigitalIdentityCard.json') as f:
     contract_data = json.load(f)
     abi = contract_data['abi']
     address = contract_data['networks']['5777']['address']  # Replace <network_id> with the desired network ID
