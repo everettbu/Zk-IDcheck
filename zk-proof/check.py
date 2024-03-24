@@ -8,23 +8,18 @@ with open('/Users/Everett/Desktop/Zk-IDcheck/digital-id/build/contracts/DigitalI
     abi = contract_data['abi']
     address = contract_data['networks']['5777']['address']  # Replace <network_id> with the desired network ID
 
-# Connect to a local Ethereum node (like Ganache)
-web3 = Web3(Web3.HTTPProvider('http://localhost:7545'))  # Adjust the URL according to your Ethereum node configuration
-
-# Instantiate contract
-contract = web3.eth.contract(address=address, abi=abi)
-
-# Print contract functions
-print("Contract functions:", contract.functions)
 # Connect to Ganache
 ganache_url = "http://127.0.0.1:7545"  # Replace with your Ganache URL
 web3 = Web3(Web3.HTTPProvider(ganache_url))
 
+# Retrieve accounts from Ganache
+accounts = web3.eth.accounts
+
+# Choose the first account (you can modify this logic as needed)
+account_address = accounts[0]
+
 # Instantiate contract
 contract = web3.eth.contract(abi=abi, address=address)
-
-# Account address for testing (change to your desired address)
-account_address = "0xd0746abb9136960557DE555D0f18Ac5DED5c46aB"
 
 # Retrieve identity from the contract
 identity = contract.functions.getIdentity(account_address).call()
